@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:wedding_management/screens/banquet_detail/components/banquet_packages.dart';
-import 'package:wedding_management/screens/banquet_detail/components/title.dart';
+import 'package:wedding_management/components/title.dart';
 import 'package:wedding_management/services/banquet_service.dart';
 import 'package:wedding_management/size_config.dart';
-import 'image_header.dart';
+import '../../../components/image_header.dart';
 import '../../../models/banquet.dart';
 
 class Body extends StatelessWidget {
@@ -21,12 +21,12 @@ class Body extends StatelessWidget {
       future: getBanquet(),
       builder: (context, snapshot) =>
           snapshot.connectionState == ConnectionState.waiting
-              ? const CircularProgressIndicator()
+              ? const Center(child: CircularProgressIndicator())
               : snapshot.hasData ? Column(
                   children: [
-                    ImageHeader(imagesUrl: snapshot.data!.images),
+                    ImageHeader(imagesUrl: snapshot.data!.images, placeholder: 'assets/categories/banquet.png', onClick: (){},),
                     SizedBox(height: getProportionateScreenHeight(15),),
-                    TitleTile(title: snapshot.data!.name, location: snapshot.data!.city, press: (){}),
+                    TitleTile(title: snapshot.data!.name, subtitle: snapshot.data!.city),
                     SizedBox(height: getProportionateScreenHeight(15),),
                     Expanded(child: BanquetPackages(banquetId: banquetId,))
                   ],

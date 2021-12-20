@@ -1,17 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:wedding_management/custom_icons_icons.dart';
 import 'package:wedding_management/size_config.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 
 class ImageHeader extends StatefulWidget {
   final List<String> imagesUrl;
-  const ImageHeader({Key? key, required this.imagesUrl}) : super(key: key);
+  final bool isLikeInitial;
+  final String placeholder;
+  final Function onClick;
+  const ImageHeader({Key? key, required this.imagesUrl, required this.placeholder, required this.onClick, this.isLikeInitial=false}) : super(key: key);
   @override
   _ImageHeaderState createState() => _ImageHeaderState();
 }
 
 class _ImageHeaderState extends State<ImageHeader> {
   int currentIndexPage = 0;
+  bool isLike = true;
+
+  void onToggle(){
+    setState(() {
+      isLike = !isLike;
+    });
+    widget.onClick();
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    isLike = widget.isLikeInitial;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -56,8 +76,8 @@ class _ImageHeaderState extends State<ImageHeader> {
                   child: CachedNetworkImage(
                     imageUrl: widget.imagesUrl[index],
                     placeholderFadeInDuration: const Duration(seconds: 2),
-                    placeholder: (context, url) => Opacity(
-                      child: Image.asset("assets/hotel-1.png"),
+                    placeholder: (context, url) => const Opacity(
+                      child: Center(child: Icon(Icons.image)),
                       opacity: 0.5,
                     ),
                     fit: BoxFit.cover,
@@ -89,6 +109,24 @@ class _ImageHeaderState extends State<ImageHeader> {
                   ),
                 ),
         ),
+        Positioned(
+          top: 20,
+         right: 10,
+         left: 10,
+         child: Row(
+           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+           children: [
+             IconButton(
+               icon: const Icon(Icons.arrow_back_ios_new_outlined, color: Colors.white,),
+               onPressed: ()=>Navigator.of(context).pop(),
+             ),
+             IconButton(
+               icon: Icon(isLike ? CustomIcons.heart: CustomIcons.heart_filled, color: Colors.red,),
+               onPressed: onToggle,
+             ),
+           ],
+         ),
+        )
       ],
     );
   }

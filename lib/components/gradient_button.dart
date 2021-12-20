@@ -5,7 +5,8 @@ import '../size_config.dart';
 class GradientButton extends StatelessWidget {
   final String buttonText;
   final Function onPressed;
-  const GradientButton({Key? key, required this.buttonText, required this.onPressed}) : super(key: key);
+  final bool isCircular;
+  const GradientButton({Key? key, required this.buttonText, required this.onPressed, this.isCircular=false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,13 +15,13 @@ class GradientButton extends StatelessWidget {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           padding: const EdgeInsets.all(0),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(isCircular ? 33: 10)),
         ),
         onPressed: () => onPressed(),
         child: Ink(
           decoration: BoxDecoration(
               gradient: kPrimaryGradientColor,
-              borderRadius: BorderRadius.circular(10)
+              borderRadius: BorderRadius.circular(isCircular ? 33: 10)
           ),
           child: Container(
             constraints: const BoxConstraints(maxWidth: 500.0, minHeight: 50.0),

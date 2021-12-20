@@ -20,21 +20,6 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget{
         child: Center(child: Text(title,style: const TextStyle(color: kPrimaryColor, fontWeight: FontWeight.w600, fontSize: 20),)),
       ),
       automaticallyImplyLeading: true,
-      // flexibleSpace: ClipPath(
-      //     clipper: Customshape(),
-      //     child: Container(
-      //       decoration: BoxDecoration(
-      //           color: Colors.white,
-      //           boxShadow: [BoxShadow(
-      //             color: Colors.black.withOpacity(0.16),
-      //             blurRadius: 20,
-      //             offset: Offset.zero,
-      //           )]
-      //       ),
-      //       width: SizeConfig.screenWidth,
-      //       child: Center(child: Text(title,style: const TextStyle(color: kPrimaryColor),)),
-      //     ),
-      //   ),
     );
   }
 }
@@ -42,8 +27,6 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget{
 class Customshape extends CustomClipper<Path>{
   @override
   Path getClip(Size size) {
-    print(size.height);
-    print(size.width);
     double height = size.height;
     double width = size.width;
     var path = Path();

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:wedding_management/screens/banquet/components/banquet_card.dart';
+import 'package:wedding_management/screens/banquet_detail/banquet_detail.dart';
 import 'package:wedding_management/services/banquet_service.dart';
 import 'package:wedding_management/size_config.dart';
 
@@ -43,6 +44,7 @@ class _BanquetGridState extends State<BanquetGrid> {
                 coverImage: banquet['imageUrl'],
                 addressArea: banquet['area'],
                 minPackageRate: banquet['minRate'],
+                onClicked: ()=>Navigator.of(context).pushNamed(BanquetDetail.routeName, arguments: document.id ),
               );
             }).toList());
       },

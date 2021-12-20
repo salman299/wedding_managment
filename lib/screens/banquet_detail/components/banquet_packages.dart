@@ -17,7 +17,7 @@ class BanquetPackages extends StatelessWidget {
           return const Text('something went wrong');
         }
         if (snapshot.connectionState == ConnectionState.waiting){
-          return const CircularProgressIndicator();
+          return const Center(child: CircularProgressIndicator());
         }
         return ListView(
             children: snapshot.data!.docs.map((DocumentSnapshot document) {
@@ -27,6 +27,7 @@ class BanquetPackages extends StatelessWidget {
                   title: package.name,
                   price: package.rate,
                   points: package.points,
+                  onClicked: (){},
               );
             }).toList());
       },

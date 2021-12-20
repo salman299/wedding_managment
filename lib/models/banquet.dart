@@ -24,7 +24,10 @@ class Banquet {
   final String country;
   final String description;
   final String coverImage;
+  final String minRate;
   final List<String> images;
+  List<BanquetPackage> banquetPackages;
+
   Banquet(
       {this.id,
         required this.name,
@@ -33,18 +36,26 @@ class Banquet {
       required this.country,
       required this.description,
       required this.coverImage,
-      required this.images});
+      required this.minRate,
+      required this.images,
+      this.banquetPackages= const [],
+      });
 
   factory Banquet.fromMap(Map<String, dynamic> data, String documentId) {
     return Banquet(
         id: documentId,
-        name: data['name'],
-        area: data['area'],
-        city: data['city'],
-        country: data['country'],
-        coverImage: data['imageUrl'],
-        description: data['description'],
+        name: data['name'] ?? '',
+        area: data['area'] ?? '',
+        city: data['city'] ?? '',
+        country: data['country'] ?? '',
+        coverImage: data['imageUrl'] ?? '',
+        description: data['description'] ?? '',
+        minRate: data['minRate'] ?? '',
         images: List<String>.from(data['imagesUrls']),
     );
+  }
+
+  void setBanquetPackages(List<BanquetPackage> items){
+    banquetPackages=items;
   }
 }

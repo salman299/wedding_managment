@@ -35,11 +35,11 @@ class CustomBottomNavigationBar extends StatelessWidget {
               label: 'Liked',
             ),
             BottomNavigationBarItem(
-              icon: Icon(CustomIcons.user),
+              icon: Icon(CustomIcons.user1),
               label: 'Account',
             ),
             BottomNavigationBarItem(
-              icon: Icon(CustomIcons.book),
+              icon: Icon(CustomIcons.shopping_cart),
               label: "Book",
             ),
           ],

@@ -5,14 +5,13 @@ import 'package:wedding_management/screens/banquet/banquet.dart';
 class CategoryCard extends StatelessWidget {
   final String title;
   final String image;
-  const CategoryCard({Key? key, required this.title, required this.image}) : super(key: key);
+  final Function onClick;
+  const CategoryCard({Key? key, required this.title, required this.image, required this.onClick}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        Navigator.of(context).pushNamed(Banquet.routeName);
-      },
+      onTap: ()=> onClick(),
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,

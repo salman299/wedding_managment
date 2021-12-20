@@ -62,7 +62,7 @@ class CombineProgressCard extends StatelessWidget {
                     height: 10,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
-                      color: kSecondaryColor,
+                      color: kSecondaryLightColor,
                     ),
                   )
                 ],
@@ -70,7 +70,7 @@ class CombineProgressCard extends StatelessWidget {
               const Text(
                 'COMPLETE >',
                 style: TextStyle(
-                    color: kSecondaryColor,
+                    color: kSecondaryLightColor,
                     fontSize: 16,
                     fontWeight: FontWeight.w600),
               ),
