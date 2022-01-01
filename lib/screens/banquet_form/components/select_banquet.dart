@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wedding_management/models/banquet.dart';
 import 'package:wedding_management/providers/banquet_form_provider.dart';
-import 'package:wedding_management/screens/banquet/components/banquet_card.dart';
+import 'package:wedding_management/components/long_image_card.dart';
 import 'package:wedding_management/size_config.dart';
 
 class SelectBanquetGrid extends StatelessWidget {
@@ -31,12 +31,12 @@ class SelectBanquetGrid extends StatelessWidget {
                 horizontal: getProportionateScreenWidth(20)),
             children: snapshot.data!.map((banquet) {
               return Consumer<BanquetFormProvider>(
-                builder: (context, formProvider, child)=>BanquetCard(
+                builder: (context, formProvider, child)=>LongImageCard(
                   id: banquet.id!,
                   title: banquet.name,
-                  coverImage: banquet.coverImage,
-                  addressArea: banquet.area,
-                  minPackageRate: banquet.minRate,
+                  image: banquet.coverImage,
+                  subtitle: banquet.area,
+                  price: banquet.minRate,
                   isSelected: formProvider.banquetId==banquet.id!,
                   onClicked: (){
                     Provider.of<BanquetFormProvider>(context, listen: false).setBanquetId(banquet.id);

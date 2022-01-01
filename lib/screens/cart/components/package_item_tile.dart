@@ -42,7 +42,7 @@ class PackageItemTile extends StatelessWidget {
           Expanded(
               flex: 5,
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -81,7 +81,7 @@ class PackageItemTile extends StatelessWidget {
                             runSpacing: 5,
                             children: [
                               Text(
-                                '${cartItem.percentage*100}% Complete',
+                                '${cartItem.percentage.toInt()*100}% Complete',
                                 style: const TextStyle(
                                     fontSize: 14, color: kTextLightColor),
                               ),

@@ -1,13 +1,14 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wedding_management/models/invitation_card.dart';
 import 'package:wedding_management/providers/invitation_card_form_provider.dart';
-import 'package:wedding_management/screens/invitation_card/components/invitation_card_card.dart';
+import 'package:wedding_management/components/short_image_card.dart';
 import 'package:wedding_management/size_config.dart';
 
 class SelectInvitationCardGrid extends StatelessWidget {
-  final TextEditingController invitationCardId;
-  const SelectInvitationCardGrid({Key? key, required this.invitationCardId}) : super(key: key);
+  final TextEditingController invitationCardId, cardTitle, image, price;
+  const SelectInvitationCardGrid({Key? key, required this.invitationCardId,required this.cardTitle,required this.image,required this.price}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,7 @@ class SelectInvitationCardGrid extends StatelessWidget {
                 horizontal: getProportionateScreenWidth(20)),
             children: snapshot.data!.map((card) {
               return Consumer<InvitationCardFormProvider>(
-                builder: (context, formProvider, child)=> InvitationCardCard(
+                builder: (context, formProvider, child)=> ShortImageCard(
                     id: card.id!,
                     title: card.title,
                     coverImage: card.coverImage,
@@ -40,6 +41,9 @@ class SelectInvitationCardGrid extends StatelessWidget {
                     onClicked: (){
                       Provider.of<InvitationCardFormProvider>(context, listen: false).setInvitationCardId(card.id);
                       invitationCardId.text = card.id!;
+                      cardTitle.text = card.title;
+                      image.text = card.coverImage;
+                      price.text = card.rate.toString();
                     })
               );
             }).toList());

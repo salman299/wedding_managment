@@ -12,7 +12,14 @@ import 'package:wedding_management/screens/home/home.dart';
 import 'package:wedding_management/screens/invitation_card/invitation_card_screen.dart';
 import 'package:wedding_management/screens/invitation_card_datail/invitation_card_detail.dart';
 import 'package:wedding_management/screens/invitation_card_form/invitation_card_form.dart';
+import 'package:wedding_management/screens/order/order_screen.dart';
+import 'package:wedding_management/screens/photographer/photographer.dart';
+import 'package:wedding_management/screens/photographer_detail/photographer_detail.dart';
+import 'package:wedding_management/screens/photographer_form/invitation_card_form.dart';
 import 'package:wedding_management/screens/register/register.dart';
+import 'package:wedding_management/screens/rent_car/rent_car.dart';
+import 'package:wedding_management/screens/rent_car_detail/rent_car_detail.dart';
+import 'package:wedding_management/screens/rent_car_form/rent_car_form.dart';
 import 'package:wedding_management/screens/splash/splash_screen.dart';
 
 
@@ -27,6 +34,14 @@ final Map<String, WidgetBuilder> routes = {
   InvitationCardDetail.routeName: (context) => const InvitationCardDetail(),
   InvitationCardForm.routeName: (context) => const InvitationCardForm(),
 
+  PhotographerScreen.routeName: (context) => const PhotographerScreen(),
+  PhotographerDetail.routeName: (context) => const PhotographerDetail(),
+  PhotographerForm.routeName: (context) => const PhotographerForm(),
+
+  RentCarScreen.routeName: (context) => const RentCarScreen(),
+  RentCarDetail.routeName: (context) => const RentCarDetail(),
+  RentCarForm.routeName: (context) => const RentCarForm(),
+
   BridalDressesScreen.routeName: (context) => const BridalDressesScreen(),
   GroomDressesScreen.routeName: (context) => const GroomDressesScreen(),
 
@@ -35,6 +50,8 @@ final Map<String, WidgetBuilder> routes = {
 
   BridalDressForm.routeName: (context) => const BridalDressForm(),
   GroomDressForm.routeName: (context) => const GroomDressForm(),
+
+  OrderScreen.routeName : (context) => const OrderScreen(),
 
   Register.routeName: (context) => const Register(),
   Home.routeName: (context) => const Home(),

@@ -2,19 +2,21 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:wedding_management/constants.dart';
 
-class InvitationCardCard extends StatelessWidget {
+class LongImageCard extends StatelessWidget {
   final String id;
   final String title;
-  final String coverImage;
-  final String rate;
+  final String image;
+  final String subtitle;
+  final String price;
   final Function onClicked;
   final bool isSelected;
-  const InvitationCardCard(
+  const LongImageCard(
       {Key? key,
         required this.id,
         required this.title,
-        required this.coverImage,
-        required this.rate,
+        required this.image,
+        required this.subtitle,
+        required this.price,
         required this.onClicked,
         this.isSelected=false,
       })
@@ -30,7 +32,7 @@ class InvitationCardCard extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
                 color: Colors.white,
-                border: isSelected? Border.all(color: kSelectedItemColor): null,
+                border: isSelected? Border.all(color: Colors.greenAccent): null,
                 boxShadow: [
                   BoxShadow(
                       color: Colors.black.withOpacity(0.16),
@@ -41,14 +43,14 @@ class InvitationCardCard extends StatelessWidget {
             child: Column(
               children: [
                 Expanded(
-                  flex: 3,
+                  flex: 4,
                   child: SizedBox(
                     width: double.infinity,
                     child: ClipRRect(
                       borderRadius: const BorderRadius.only(topLeft: Radius.circular(23), topRight: Radius.circular(23)),
                       child: CachedNetworkImage(
-                        imageUrl: coverImage,
-                        fit: BoxFit.fitHeight,
+                        imageUrl: image,
+                        fit: BoxFit.fill,
                         placeholder: (context, url) => const Opacity(
                           child: Center(child: Icon(Icons.image)),
                           opacity: 0.5,
@@ -75,6 +77,13 @@ class InvitationCardCard extends StatelessWidget {
                                 fontSize: 18,
                                 fontWeight: FontWeight.w700),
                           ),
+                          Text(
+                            subtitle.toUpperCase(),
+                            style: const TextStyle(
+                                color: kTextLightColor,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400),
+                          ),
                         ],
                       ),
                     ),
@@ -83,19 +92,6 @@ class InvitationCardCard extends StatelessWidget {
               ],
             ),
           ),
-          Positioned(
-              right: 10,
-              top: 10,
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10 , vertical: 5),
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.85),
-                  borderRadius: BorderRadius.circular(33),
-                ),
-                child: Text('${rate}'),
-              )
-          ),
-
           if ( isSelected )
           const Positioned(
             top: 10,

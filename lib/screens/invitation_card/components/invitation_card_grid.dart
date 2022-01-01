@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:wedding_management/screens/invitation_card/components/invitation_card_card.dart';
+import 'package:wedding_management/components/short_image_card.dart';
 import 'package:wedding_management/screens/invitation_card_datail/invitation_card_detail.dart';
 import 'package:wedding_management/services/card_service.dart';
 import '../../../models/invitation_card.dart';
@@ -21,11 +21,8 @@ class _InvitationCardGridState extends State<InvitationCardGrid> {
     return StreamBuilder<QuerySnapshot>(
       stream: _cardStream,
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-        if (snapshot.hasError) {
-          return const Text('something went wrong');
-        }
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Text('loading');
+          return const Center(child: CircularProgressIndicator());
         }
         return GridView(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -38,7 +35,7 @@ class _InvitationCardGridState extends State<InvitationCardGrid> {
                 horizontal: getProportionateScreenWidth(20)),
             children: snapshot.data!.docs.map((DocumentSnapshot document) {
               InvitationCard invitationCard = InvitationCard.fromMap(document.data() as Map<String, dynamic>, document.id);
-              return InvitationCardCard(
+              return ShortImageCard(
                 id: invitationCard.id!,
                 title: invitationCard.title,
                 coverImage: invitationCard.coverImage,

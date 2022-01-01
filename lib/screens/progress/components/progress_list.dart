@@ -3,6 +3,8 @@ import 'package:wedding_management/screens/banquet_form/banquet_form.dart';
 import 'package:wedding_management/screens/dress_form/bridal_dress_form.dart';
 import 'package:wedding_management/screens/dress_form/groom_dress_form.dart';
 import 'package:wedding_management/screens/invitation_card_form/invitation_card_form.dart';
+import 'package:wedding_management/screens/photographer_form/invitation_card_form.dart';
+import 'package:wedding_management/screens/rent_car_form/rent_car_form.dart';
 import 'package:wedding_management/size_config.dart';
 
 import 'progress_card.dart';
@@ -17,11 +19,12 @@ class Progress{
 class ProgressList extends StatelessWidget {
   ProgressList({Key? key}) : super(key: key);
   final List<Progress> categories = [
-    Progress(name: 'Banquet', percentage: 0.20, route: BanquetForm.routeName),
-    Progress(name: 'Card', percentage: 0.20, route: InvitationCardForm.routeName),
-    Progress(name: 'Bridal Dress', percentage: 0.20, route: BridalDressForm.routeName),
-    Progress(name: 'Groom Dress', percentage: 0.20, route: GroomDressForm.routeName),
-    Progress(name: 'Photographer', percentage: 0.20, route: BanquetForm.routeName),
+    Progress(name: 'Banquet', percentage: 0.50, route: BanquetForm.routeName),
+    Progress(name: 'Card', percentage: 0.30, route: InvitationCardForm.routeName),
+    // Progress(name: 'Bridal Dress', percentage: 0.20, route: BridalDressForm.routeName),
+    // Progress(name: 'Groom Dress', percentage: 0.20, route: GroomDressForm.routeName),
+    Progress(name: 'Photographer', percentage: 0, route: PhotographerForm.routeName),
+    Progress(name: 'Rent a Car', percentage: 0.70, route: RentCarForm.routeName),
   ];
 
   @override

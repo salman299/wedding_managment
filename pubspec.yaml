@@ -91,6 +91,34 @@ flutter:
   #       - asset: fonts/poppins/Poppins-Medium.otf
   #       - asset: fonts/poppins/Poppins-Italic.otf
   #         style: italic
+   - family: Segoe_UI
+     fonts:
+       - asset: fonts/segoe/Segoe_UI_Light_300.ttf
+         weight: 300
+       - asset: fonts/segoe/Segoe_UI_Light_Italic_300.ttf
+         weight: 300
+         style: italic
+       - asset: fonts/segoe/Segoe_UI_400.ttf
+         weight: 400
+       - asset: fonts/segoe/Segoe_UI_Italic_400.ttf
+         weight: 400
+         style: italic
+       - asset: fonts/segoe/Segoe_UI_Semibold_600.ttf
+         weight: 600
+       - asset: fonts/segoe/Segoe_UI_Semibold_Italic_600.ttf
+         weight: 600
+         style: italic
+       - asset: fonts/segoe/Segoe_UI_Gras_700.ttf
+         weight: 700
+       - asset: fonts/segoe/Segoe_UI_Gras_Italic_700.ttf
+         weight: 700
+         style: italic
+       - asset: fonts/segoe/Segoe_UI_Black_900.ttf
+         weight: 900
+       - asset: fonts/segoe/Segoe_UI_Black_Italic_900.ttf
+         weight: 900
+         style: italic
+
 
   #   - family: Trajan Pro
   #     fonts:

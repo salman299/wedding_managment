@@ -6,7 +6,11 @@ import 'package:wedding_management/providers/cart_provider.dart';
 import 'package:wedding_management/providers/dress_form_provider.dart';
 import 'package:wedding_management/providers/invitation_card_form_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:wedding_management/providers/photographer_form_provider.dart';
+import 'package:wedding_management/providers/rent_car_form_provider.dart';
+import 'package:wedding_management/providers/settings.dart';
 import 'package:wedding_management/screens/home/home.dart';
+import 'package:wedding_management/screens/order/order_screen.dart';
 import 'package:wedding_management/screens/register/register.dart';
 import 'package:wedding_management/screens/splash/splash_screen.dart';
 import 'routes.dart';
@@ -27,13 +31,22 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider.value(
+          value: AppSettings(),
+        ),
+        ChangeNotifierProvider.value(
           value: Auth(),
+        ),
+        ChangeNotifierProvider.value(
+          value: RentCarFormProvider(),
         ),
         ChangeNotifierProvider.value(
             value: BanquetFormProvider(),
         ),
         ChangeNotifierProvider.value(
             value: InvitationCardFormProvider()
+        ),
+        ChangeNotifierProvider.value(
+            value: PhotographerFormProvider()
         ),
         ChangeNotifierProvider.value(
             value: DressFormProvider()

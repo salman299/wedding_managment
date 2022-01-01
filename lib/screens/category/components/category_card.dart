@@ -27,7 +27,7 @@ class CategoryCard extends StatelessWidget {
             // const SizedBox(height: 100),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 10),
-              child: Text(title.toUpperCase(), style: const TextStyle(color: kPrimaryColor, fontSize: 20, fontWeight: FontWeight.w700),),
+              child: Text(title.toUpperCase(), style: const TextStyle(color: kPrimaryColor, fontSize: 20, fontWeight: FontWeight.w600),),
             ),
 
           ],

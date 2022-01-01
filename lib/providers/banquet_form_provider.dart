@@ -1,18 +1,12 @@
-import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:wedding_management/models/banquet.dart';
 import 'package:wedding_management/models/invitation_card.dart';
 import 'package:wedding_management/services/banquet_service.dart';
-import 'package:wedding_management/services/card_service.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class BanquetFormProvider with ChangeNotifier {
   String banquetId = '';
   String banquetPackageId = '';
   List<Banquet> banquets = [];
-  List<InvitationCard> invitationCards = [];
-  int percentage = 0;
 
   void setBanquetId(id) {
     banquetPackageId = '';
@@ -52,9 +46,7 @@ class BanquetFormProvider with ChangeNotifier {
   }
 
   Future<Map<String, dynamic>> getFormDataFromLocalData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    final String? localData = prefs.getString('banquet_data');
-    return json.decode(localData!) as Map<String, dynamic>;
+    return BanquetService.getFormDataFromLocalData();
   }
 
 }

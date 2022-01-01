@@ -47,6 +47,7 @@ class BanquetFormFields extends StatelessWidget {
               DateTimeField(
                 format: format,
                 controller: date,
+                decoration: const InputDecoration(label: Text("Date"), hintText: "Date"),
                 onShowPicker: (context, currentValue) async {
                   final date = await showDatePicker(
                       context: context,

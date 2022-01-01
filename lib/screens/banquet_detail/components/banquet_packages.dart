@@ -20,6 +20,7 @@ class BanquetPackages extends StatelessWidget {
           return const Center(child: CircularProgressIndicator());
         }
         return ListView(
+            padding: EdgeInsets.zero,
             children: snapshot.data!.docs.map((DocumentSnapshot document) {
               Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
               BanquetPackage package = BanquetPackage.fromMap(data, document.id);

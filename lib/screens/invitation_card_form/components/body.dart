@@ -27,10 +27,14 @@ class _BodyState extends State<Body> {
   TextEditingController invitationCardId = TextEditingController(text: '');
   TextEditingController groomName = TextEditingController(text: '');
   TextEditingController brideName = TextEditingController(text: '');
+  TextEditingController invitations = TextEditingController(text: '');
   TextEditingController contactNo = TextEditingController(text: '');
   TextEditingController address = TextEditingController(text: '');
   TextEditingController email = TextEditingController(text: '');
   TextEditingController otherDetails = TextEditingController(text: '');
+  TextEditingController cardTitle = TextEditingController(text: '');
+  TextEditingController image = TextEditingController(text: '');
+  TextEditingController price = TextEditingController(text: '');
 
   @override
   void initState() {
@@ -47,10 +51,14 @@ class _BodyState extends State<Body> {
         'invitationCardId': invitationCardId.text,
         'groomName': groomName.text,
         'brideName': brideName.text,
+        'invitations': invitations.text,
         'contactNo': contactNo.text,
         'address': address.text,
         'email': email.text,
         'otherDetails': otherDetails.text,
+        'cardTitle': cardTitle.text,
+        'image': image.text,
+        'price': price.text,
       };
       InvitationCardService.setFormToLocalStorage(data);
       Navigator.of(context).pop();
@@ -62,6 +70,7 @@ class _BodyState extends State<Body> {
     invitationCardId.text = data['invitationCardId'] ?? '';
     groomName.text = data['groomName'] ?? '';
     brideName.text = data['brideName'] ?? '';
+    invitations.text = data['invitations'] ?? '';
     contactNo.text = data['contactNo'] ?? '';
     address.text = data['address'] ?? '';
     email.text = data['email'] ?? '';
@@ -71,11 +80,12 @@ class _BodyState extends State<Body> {
   }
 
   List<Widget> stepList() => [
-        SelectInvitationCardGrid(invitationCardId: invitationCardId),
+        SelectInvitationCardGrid(invitationCardId: invitationCardId, image: image,price: price,cardTitle: cardTitle,),
         InvitationCardFormFields(
           formKey: _formKey,
           groomName: groomName,
           brideName: brideName,
+          invitations: invitations,
           contactNo: contactNo,
           address: address,
           email: email,

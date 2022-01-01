@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:wedding_management/constants.dart';
-import 'package:wedding_management/custom_icons_icons.dart';
 import 'package:wedding_management/size_config.dart';
 class BanquetPackageCard extends StatelessWidget {
   final String title;
@@ -39,7 +38,7 @@ class BanquetPackageCard extends StatelessWidget {
             ),
             const SizedBox(height: 10,),
             Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Column(
                 children: [
                   ...points.map((e) =>
@@ -47,16 +46,19 @@ class BanquetPackageCard extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(vertical: 2),
                         child: Row(
                           children: [
-                            const Icon( CustomIcons.plus, size: 10, color: kSecondaryColor,),
+                            const Icon( Icons.star_border, size: 12, color: kSecondaryColor,),
                             const SizedBox(width: 10,),
-                            Text(e, style: const TextStyle(color: kTextLightColor, fontWeight: FontWeight.w600),),
+                            Text(e, style: const TextStyle(color: kTextColor),),
                           ],
                         ),
                       )
-                  )
+                  ),
                 ],
               ),
-            )
+            ),
+            // Align(
+            //     alignment: Alignment.centerRight,
+            //     child: TextButton.icon(label: const Text('Add'),icon: const Icon(CustomIcons.shopping_cart,), onPressed: (){},))
           ],
         ),
       ),
