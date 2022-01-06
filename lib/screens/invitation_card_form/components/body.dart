@@ -5,6 +5,7 @@ import 'package:wedding_management/components/form_action_buttons.dart';
 import 'package:wedding_management/components/gradient_button.dart';
 import 'package:wedding_management/components/outline_button.dart';
 import 'package:wedding_management/providers/banquet_form_provider.dart';
+import 'package:wedding_management/providers/cart_provider.dart';
 import 'package:wedding_management/providers/invitation_card_form_provider.dart';
 import 'package:wedding_management/screens/banquet_form/components/select_banquet.dart';
 import 'package:wedding_management/screens/banquet_form/components/select_package.dart';
@@ -61,6 +62,7 @@ class _BodyState extends State<Body> {
         'price': price.text,
       };
       InvitationCardService.setFormToLocalStorage(data);
+      Provider.of<CartProvider>(context, listen: false).addPackageCartItem(InvitationCardService.getCartItemFromData(data));
       Navigator.of(context).pop();
     }
   }

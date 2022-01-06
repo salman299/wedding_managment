@@ -6,6 +6,7 @@ import 'package:wedding_management/components/outline_button.dart';
 import 'package:wedding_management/components/snakbar.dart';
 import 'package:wedding_management/constants.dart';
 import 'package:wedding_management/models/invitation_card.dart';
+import 'package:wedding_management/providers/cart_provider.dart';
 import 'package:wedding_management/providers/invitation_card_form_provider.dart';
 import 'package:wedding_management/screens/dress_datail/components/product_tile.dart';
 import 'package:wedding_management/services/card_service.dart';
@@ -16,7 +17,7 @@ class Body extends StatelessWidget {
   const Body({Key? key, required this.invitationCardId}) : super(key: key);
 
   void onAddToCard(context, data) {
-    Provider.of<InvitationCardFormProvider>(context, listen: false)
+    Provider.of<CartProvider>(context, listen: false)
         .setInvitationCardDataFromDetail(
             id: data.id,
             image: data.coverImage,

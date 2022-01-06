@@ -7,7 +7,8 @@ import 'package:wedding_management/size_config.dart';
 class PackageItemTile extends StatelessWidget {
   final CartPackageItem cartItem;
   final String route;
-  const PackageItemTile({Key? key, required this.route, required this.cartItem}) : super(key: key);
+  final VoidCallback onDelete;
+  const PackageItemTile({Key? key, required this.route, required this.cartItem, required this.onDelete}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -123,7 +124,7 @@ class PackageItemTile extends StatelessWidget {
                                 Icons.delete_outline,
                                 color: Colors.black,
                               ),
-                              onPressed: () {},
+                              onPressed: onDelete,
                             ),
                           ),
                         ),

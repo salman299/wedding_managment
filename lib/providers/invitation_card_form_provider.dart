@@ -12,23 +12,6 @@ class InvitationCardFormProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> setInvitationCardDataFromDetail({required String id,required String cardTitle,required String image,required String price}) async {
-    Map<String, dynamic> cardData = await InvitationCardService.getFormDataFromLocalData();
-    final data = {
-      'invitationCardId': id,
-      'groomName': cardData['groomName'] ?? '',
-      'brideName': cardData['brideName'] ?? '',
-      'invitations': cardData['invitations'] ?? '',
-      'contactNo': cardData['contactNo'] ?? '',
-      'address': cardData['address'] ?? '',
-      'email': cardData['email'] ?? '',
-      'otherDetails': cardData['otherDetails'] ?? '',
-      'cardTitle': cardTitle,
-      'image': image,
-      'price': price,
-    };
-    InvitationCardService.setFormToLocalStorage(data);
-  }
 
   Future<List<InvitationCard>> getInvitationCards() async{
     if(invitationCards.isEmpty){

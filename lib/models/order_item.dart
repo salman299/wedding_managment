@@ -8,6 +8,7 @@ class BanquetOrderItem {
   final String otherDetails;
   final String packageId;
   final String price;
+  double? calculatedPrice;
 
   BanquetOrderItem(
       {this.id,
@@ -18,13 +19,14 @@ class BanquetOrderItem {
       required this.invitations,
       required this.otherDetails,
       required this.packageId,
-      required this.price
+      required this.price,
+        this.calculatedPrice,
       });
 
   factory BanquetOrderItem.fromMap(
       Map<String, dynamic> data, String documentId) {
     return BanquetOrderItem(
-      title: data['banquetName'],
+      title: data['title'],
       banquetId: data['banquetId'],
       contactNo: data['contactNo'],
       date: data['date'],
@@ -32,6 +34,7 @@ class BanquetOrderItem {
       otherDetails: data['otherDetails'],
       packageId: data['packageId'],
       price: data['price'],
+      calculatedPrice: double.parse(data['price'])*double.parse(data['invitations']),
     );
   }
 
@@ -45,6 +48,7 @@ class BanquetOrderItem {
         'packageId': packageId,
         'price': price,
       };
+
 }
 
 class ProductOrderItem {
@@ -88,6 +92,7 @@ class InvitationCardOrderItem {
   final String invitations;
   final String price;
   final String otherDetails;
+  final double? calculatedPrice;
 
   InvitationCardOrderItem(
       {this.id,
@@ -100,12 +105,14 @@ class InvitationCardOrderItem {
       required this.email,
       required this.invitations,
       required this.price,
-      required this.otherDetails});
+      required this.otherDetails,
+      this.calculatedPrice,
+      });
 
   factory InvitationCardOrderItem.fromMap(
       Map<String, dynamic> data, String documentId) {
     return InvitationCardOrderItem(
-      title: data['cardTitle'],
+      title: data['title'],
       invitationCardID: data['invitationCardId'],
       contactNo: data['contactNo'],
       email: data['email'],
@@ -114,7 +121,8 @@ class InvitationCardOrderItem {
       groomName: data['groomName'],
       invitations: data['invitations'],
       otherDetails: data['otherDetails'],
-      price: data['price']*double.parse(data['invitations']),
+      price: data['price'],
+      calculatedPrice: double.parse(data['price'])*double.parse(data['invitations']),
     );
   }
 
@@ -141,6 +149,7 @@ class PhotographerOrderItem {
   final String contactNo;
   final String price;
   final String otherDetails;
+  final double? calculatedPrice;
 
   PhotographerOrderItem(
       {this.id,
@@ -150,7 +159,9 @@ class PhotographerOrderItem {
       required this.contactNo,
       required this.hours,
       required this.price,
-      required this.otherDetails});
+      required this.otherDetails,
+        this.calculatedPrice,
+      });
 
   factory PhotographerOrderItem.fromMap(
       Map<String, dynamic> data, String documentId) {
@@ -163,6 +174,7 @@ class PhotographerOrderItem {
       hours: data['hours'],
       otherDetails: data['otherDetails'],
       price: data['price'],
+      calculatedPrice: double.parse(data['price'])*double.parse(data['hours'])*double.parse(data['noOfPhotographers'])
     );
   }
 
@@ -188,6 +200,7 @@ class RentCarOrderItem {
   final String contactNo;
   final String price;
   final String otherDetails;
+  double? calculatedPrice;
 
   RentCarOrderItem(
       {this.id,
@@ -199,7 +212,9 @@ class RentCarOrderItem {
       required this.address,
       required this.city,
       required this.price,
-      required this.otherDetails});
+      required this.otherDetails,
+        this.calculatedPrice,
+      });
 
   factory RentCarOrderItem.fromMap(
       Map<String, dynamic> data, String documentId) {
@@ -213,6 +228,7 @@ class RentCarOrderItem {
       contactNo: data['contactNo'],
       price: data['price'],
       otherDetails: data['otherDetails'],
+      calculatedPrice: double.parse(data['price'])*double.parse(data['days']),
     );
   }
 
@@ -253,10 +269,10 @@ class OrderItem {
   double getTotalPackage(){
     double sum=0;
     if (packageTotal != null){
-      sum += banquet != null ? double.parse(banquet!.price)*double.parse(banquet!.invitations) : 0;
-      sum += invitationCard != null ? double.parse(invitationCard!.price)*double.parse(invitationCard!.invitations) : 0;
-      sum += photographer != null ? double.parse(photographer!.price)*double.parse(photographer!.hours)*double.parse(photographer!.noOfPhotographers) : 0;
-      sum += rentCar != null ? double.parse(rentCar!.price)*double.parse(rentCar!.days) : 0;
+      sum += banquet != null ? banquet!.calculatedPrice! : 0;
+      sum += invitationCard != null ? invitationCard!.calculatedPrice!  : 0;
+      sum += photographer != null ?  photographer!.calculatedPrice! : 0;
+      sum += rentCar != null ? rentCar!.calculatedPrice! : 0;
     }
     packageTotal = sum;
     return sum;

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wedding_management/components/form_action_buttons.dart';
+import 'package:wedding_management/providers/cart_provider.dart';
 import 'package:wedding_management/providers/photographer_form_provider.dart';
 import 'package:wedding_management/screens/photographer_form/components/select_photographer_card.dart';
 import 'package:wedding_management/services/photographer_service.dart';
@@ -49,6 +50,7 @@ class _BodyState extends State<Body> {
         'price': price.text,
       };
       PhotographerService.setFormToLocalStorage(data);
+      Provider.of<CartProvider>(context, listen: false).addPackageCartItem(PhotographerService.getCartItemFromData(data));
       Navigator.of(context).pop();
     }
   }

@@ -45,6 +45,18 @@ class BanquetService {
           );
     }
   }
+  static CartPackageItem getCartItemFromData(banquetData){
+    final percentage = checkPercentage(banquetData);
+      return CartPackageItem(
+        id: "banquet",
+        title: banquetData['banquetName'],
+        subtitle: banquetData['packageName'],
+        price: banquetData['invitations'] != '' ? double.parse(banquetData['price'])*double.parse(banquetData['invitations']): null,
+        percentage: double.parse(percentage),
+        image: banquetData['image'],
+        data: banquetData,
+      );
+  }
 
   static void setFormToLocalStorage(Map<String, dynamic> data) async {
     setMapDataToLocalStorage('banquet_data', data);

@@ -33,6 +33,18 @@ class PhotographerService {
       );
     }
   }
+  static CartPackageItem getCartItemFromData(cardData){
+    final percentage = checkPercentage(cardData);
+    return CartPackageItem(
+      id: "photographer",
+      title: cardData['title'],
+      subtitle: '',
+      price: cardData['hours'] != '' ? double.parse(cardData['price'])*double.parse(cardData['hours'])*double.parse(cardData['noOfPhotographers']) : null,
+      percentage: double.parse(percentage),
+      image: cardData['image'],
+      data: cardData,
+    );
+  }
 
   static void setFormToLocalStorage(Map<String, dynamic> data) async {
     setMapDataToLocalStorage('photographer_data', data);

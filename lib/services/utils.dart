@@ -32,6 +32,7 @@ void setMapDataToLocalStorage(String name, Map<String, dynamic> data) async {
   data.putIfAbsent("percentage", () => percentage);
   prefs.setString(name, json.encode(data));
   setPercentage(prefs ,'percentage', percentage);
+
 }
 
 Future<Map<String, dynamic>> getMapDataFromLocalStorage(String name) async {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wedding_management/constants.dart';
 import 'package:wedding_management/providers/auth_provider.dart';
+import 'package:wedding_management/providers/cart_provider.dart';
 import 'package:wedding_management/screens/home/home.dart';
 import '../../size_config.dart';
 
@@ -18,6 +19,8 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> initData(context) async {
     SizeConfig.init(context);
     await Provider.of<Auth>(context, listen: false).getCurrentUser();
+    await Provider.of<CartProvider>(context, listen: false).initPackageData();
+    print(Provider.of<CartProvider>(context, listen: false).packageItems);
   }
 
   @override

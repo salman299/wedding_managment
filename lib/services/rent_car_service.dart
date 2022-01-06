@@ -33,6 +33,18 @@ class RentCarService {
       );
     }
   }
+  static CartPackageItem getCartItemFromData(cardData){
+    final percentage = checkPercentage(cardData);
+    return CartPackageItem(
+      id: "car",
+      title: cardData['title'],
+      subtitle: '${cardData['date']} - ${cardData['days']} days',
+      price: cardData['days'] != '' ? double.parse(cardData['price'])*double.parse(cardData['days']): null,
+      percentage: double.parse(percentage),
+      image: cardData['image'],
+      data: cardData,
+    );
+  }
 
   static void setFormToLocalStorage(Map<String, dynamic> data) async {
     setMapDataToLocalStorage('car_data', data);

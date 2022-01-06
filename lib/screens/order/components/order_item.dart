@@ -38,37 +38,41 @@ class _OrderItemCardState extends State<OrderItemCard> {
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Text('Packages', style: TextStyle(fontWeight: FontWeight.w600),),
-                    Text('5000', style: TextStyle(fontWeight: FontWeight.w600),),
+                  children:[
+                    const Text('Packages', style: TextStyle(fontWeight: FontWeight.w600),),
+                    Text('${widget.item.getTotalPackage()}', style: TextStyle(fontWeight: FontWeight.w600),),
                   ],
                 ),
+                if (widget.item.banquet != null)
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Text('- Banquet'),
-                    Text(widget.item.banquet!.price.toString()),
+                    Text(widget.item.banquet!.calculatedPrice!.toString()),
                   ],
                 ),
+                if (widget.item.invitationCard != null)
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Text('- Invitation Card'),
-                    Text(widget.item.invitationCard!.price.toString()),
+                    Text(widget.item.invitationCard!.calculatedPrice!.toString()),
                   ],
                 ),
+                if (widget.item.rentCar != null)
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('- Rent A Car'),
-                    Text(widget.item.rentCar!.price.toString()),
+                    Text(widget.item.rentCar!.calculatedPrice!.toString()),
                   ],
                 ),
+                if (widget.item.photographer != null)
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('- Photographer'),
-                    Text(widget.item.photographer!.price.toString()),
+                    Text(widget.item.photographer!.calculatedPrice!.toString()),
                   ],
                 ),
                 SizedBox(height: 10,),

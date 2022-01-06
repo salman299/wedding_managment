@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wedding_management/components/form_action_buttons.dart';
+import 'package:wedding_management/providers/cart_provider.dart';
 import 'package:wedding_management/providers/rent_car_form_provider.dart';
 import 'package:wedding_management/screens/rent_car_form/components/select_rent_car_grid.dart';
 import 'package:wedding_management/services/rent_car_service.dart';
@@ -53,6 +54,7 @@ class _BodyState extends State<Body> {
         'price': price.text,
       };
       RentCarService.setFormToLocalStorage(data);
+      Provider.of<CartProvider>(context, listen: false).addPackageCartItem(RentCarService.getCartItemFromData(data));
       Navigator.of(context).pop();
     }
   }

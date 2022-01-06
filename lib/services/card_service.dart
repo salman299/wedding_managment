@@ -21,8 +21,6 @@ class InvitationCardService {
 
   static Future<CartPackageItem?> getCartItemFromLocalData() async {
     final cardData = await getFormDataFromLocalData();
-    print("HELLP");
-    print(cardData);
     if (cardData.isNotEmpty){
       final cart= CartPackageItem(
         id: "invitation_card",
@@ -35,6 +33,18 @@ class InvitationCardService {
       );
       return cart;
     }
+  }
+  static CartPackageItem getCartItemFromData(cardData){
+    final percentage = checkPercentage(cardData);
+    return CartPackageItem(
+      id: "invitation_card",
+      title: cardData['cardTitle'],
+      subtitle: '',
+      price: cardData['invitations'] !='' ? double.parse(cardData['price'])*double.parse(cardData['invitations']): null,
+      percentage: double.parse(percentage),
+      image: cardData['image'],
+      data: cardData,
+    );
   }
 
   static void setFormToLocalStorage(Map<String, dynamic> data) async {

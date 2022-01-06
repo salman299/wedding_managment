@@ -42,9 +42,9 @@ class RentCarFormFields extends StatelessWidget {
                 onShowPicker: (context, currentValue) async {
                   final date = await showDatePicker(
                       context: context,
-                      firstDate: DateTime.now(),
+                      firstDate: DateTime(1900),
                       initialDate: currentValue ?? DateTime.now(),
-                      lastDate: DateTime(2022));
+                      lastDate: DateTime(2100));
                   if (date != null) {
                     final time = await showTimePicker(
                       context: context,

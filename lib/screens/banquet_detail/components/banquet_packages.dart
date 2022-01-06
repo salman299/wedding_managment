@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
 import 'package:wedding_management/components/snakbar.dart';
 import 'package:wedding_management/providers/banquet_form_provider.dart';
+import 'package:wedding_management/providers/cart_provider.dart';
 import 'package:wedding_management/screens/banquet_detail/components/banquet_package_card.dart';
 import 'package:wedding_management/services/banquet_service.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +32,7 @@ class BanquetPackages extends StatelessWidget {
                   price: package.rate,
                   points: package.points,
                   onAddToCart: () async {
-                    await Provider.of<BanquetFormProvider>(context, listen: false).setBanquetDataFromDetail(id: banquetId, packageId: package.id!, image: image, banquetName: banquetName, packageName: package.name, price: package.rate.toString());
+                    await Provider.of<CartProvider>(context, listen: false).setBanquetDataFromDetail(id: banquetId, packageId: package.id!, image: image, banquetName: banquetName, packageName: package.name, price: package.rate.toString());
                     ScaffoldMessenger.of(context).showSnackBar(snackBar(text: 'Banquet is Added to Cart'));
                   },
               );

@@ -24,29 +24,6 @@ class BanquetFormProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> setBanquetDataFromDetail(
-      {required String id,
-      required String packageId,
-      required String banquetName,
-      required String packageName,
-      required String image,
-      required String price}) async {
-    Map<String, dynamic> banquetData = await getFormDataFromLocalData();
-    final data = {
-      'banquetId': id,
-      'packageId': packageId,
-      'invitations': banquetData['invitations'] ?? '',
-      'date': banquetData['date'] ?? '',
-      'contactNo': banquetData['contactNo'] ?? '',
-      'otherDetails': banquetData['otherDetails'] ?? '',
-      'banquetName': banquetName,
-      'packageName': packageName,
-      'image': image,
-      'price': price,
-    };
-    BanquetService.setFormToLocalStorage(data);
-  }
-
   Future<List<Banquet>> getBanquets() async {
     if (banquets.isEmpty) {
       final data = await BanquetService.getBanquets();

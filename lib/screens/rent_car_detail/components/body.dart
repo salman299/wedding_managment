@@ -5,6 +5,7 @@ import 'package:wedding_management/components/image_header.dart';
 import 'package:wedding_management/components/snakbar.dart';
 import 'package:wedding_management/constants.dart';
 import 'package:wedding_management/models/rent_car.dart';
+import 'package:wedding_management/providers/cart_provider.dart';
 import 'package:wedding_management/providers/rent_car_form_provider.dart';
 import 'package:wedding_management/screens/dress_datail/components/product_tile.dart';
 import 'package:wedding_management/services/rent_car_service.dart';
@@ -15,7 +16,7 @@ class Body extends StatelessWidget {
   const Body({Key? key, required this.carId}) : super(key: key);
 
   void onAddToCard(context, data) {
-    Provider.of<RentCarFormProvider>(context, listen: false)
+    Provider.of<CartProvider>(context, listen: false)
         .setRentCarDataFromDetail(
         id: data.id!,
         title: data.title,

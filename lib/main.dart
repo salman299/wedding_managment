@@ -30,11 +30,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider.value(
-          value: Auth(),
+        ChangeNotifierProvider(
+          create: (_)=>Auth(),
         ),
-        ChangeNotifierProvider.value(
-          value: AppSettings(),
+        ChangeNotifierProvider(
+          create: (_)=>AppSettings(),
+          // value: AppSettings(),
+        ),
+        ChangeNotifierProvider(
+          create: (_)=>CartProvider(),
         ),
         ChangeNotifierProvider.value(
           value: RentCarFormProvider(),
@@ -51,9 +55,6 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(
             value: DressFormProvider()
         ),
-        ChangeNotifierProvider.value(
-            value: CartProvider(),
-        )
       ],
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
