@@ -27,8 +27,10 @@ class Body extends StatelessWidget {
                     ImageHeader(imagesUrl: snapshot.data!.images, placeholder: 'assets/categories/banquet.png', onClick: (){},),
                     SizedBox(height: getProportionateScreenHeight(15),),
                     TitleTile(title: snapshot.data!.name, subtitle: snapshot.data!.city),
-                    SizedBox(height: getProportionateScreenHeight(15),),
-                    Expanded(child: BanquetPackages(banquetId: banquetId,))
+                    SizedBox(height: getProportionateScreenHeight(10),),
+                    const Text('Packages', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),),
+                    SizedBox(height: getProportionateScreenHeight(10),),
+                    Expanded(child: BanquetPackages(banquetId: banquetId, banquetName: snapshot.data!.name, image: snapshot.data!.coverImage,))
                   ],
                 ): const Text('no Data'),
     );

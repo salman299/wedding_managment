@@ -21,7 +21,7 @@ class DressesGrid extends StatelessWidget {
           return const Text('something went wrong');
         }
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Text('loading');
+          return const Center(child: CircularProgressIndicator());
         }
         return GridView(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

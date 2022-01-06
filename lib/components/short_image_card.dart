@@ -2,21 +2,19 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:wedding_management/constants.dart';
 
-class BanquetCard extends StatelessWidget {
+class ShortImageCard extends StatelessWidget {
   final String id;
   final String title;
   final String coverImage;
-  final String addressArea;
-  final String minPackageRate;
+  final String rate;
   final Function onClicked;
   final bool isSelected;
-  const BanquetCard(
+  const ShortImageCard(
       {Key? key,
         required this.id,
         required this.title,
         required this.coverImage,
-        required this.addressArea,
-        required this.minPackageRate,
+        required this.rate,
         required this.onClicked,
         this.isSelected=false,
       })
@@ -32,7 +30,7 @@ class BanquetCard extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
                 color: Colors.white,
-                border: isSelected? Border.all(color: Colors.greenAccent): null,
+                border: isSelected? Border.all(color: kSelectedItemColor): null,
                 boxShadow: [
                   BoxShadow(
                       color: Colors.black.withOpacity(0.16),
@@ -43,7 +41,7 @@ class BanquetCard extends StatelessWidget {
             child: Column(
               children: [
                 Expanded(
-                  flex: 4,
+                  flex: 3,
                   child: SizedBox(
                     width: double.infinity,
                     child: ClipRRect(
@@ -77,13 +75,6 @@ class BanquetCard extends StatelessWidget {
                                 fontSize: 18,
                                 fontWeight: FontWeight.w700),
                           ),
-                          Text(
-                            addressArea.toUpperCase(),
-                            style: const TextStyle(
-                                color: kTextLightColor,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400),
-                          ),
                         ],
                       ),
                     ),
@@ -92,6 +83,19 @@ class BanquetCard extends StatelessWidget {
               ],
             ),
           ),
+          Positioned(
+              right: 10,
+              top: 10,
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10 , vertical: 5),
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.85),
+                  borderRadius: BorderRadius.circular(33),
+                ),
+                child: Text('${rate}'),
+              )
+          ),
+
           if ( isSelected )
           const Positioned(
             top: 10,

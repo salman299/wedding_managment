@@ -6,7 +6,11 @@ import 'package:wedding_management/providers/cart_provider.dart';
 import 'package:wedding_management/providers/dress_form_provider.dart';
 import 'package:wedding_management/providers/invitation_card_form_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:wedding_management/providers/photographer_form_provider.dart';
+import 'package:wedding_management/providers/rent_car_form_provider.dart';
+import 'package:wedding_management/providers/settings.dart';
 import 'package:wedding_management/screens/home/home.dart';
+import 'package:wedding_management/screens/order/order_screen.dart';
 import 'package:wedding_management/screens/register/register.dart';
 import 'package:wedding_management/screens/splash/splash_screen.dart';
 import 'routes.dart';
@@ -26,8 +30,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(
+          create: (_)=>Auth(),
+        ),
+        ChangeNotifierProvider(
+          create: (_)=>AppSettings(),
+          // value: AppSettings(),
+        ),
+        ChangeNotifierProvider(
+          create: (_)=>CartProvider(),
+        ),
         ChangeNotifierProvider.value(
-          value: Auth(),
+          value: RentCarFormProvider(),
         ),
         ChangeNotifierProvider.value(
             value: BanquetFormProvider(),
@@ -36,17 +50,16 @@ class MyApp extends StatelessWidget {
             value: InvitationCardFormProvider()
         ),
         ChangeNotifierProvider.value(
-            value: DressFormProvider()
+            value: PhotographerFormProvider()
         ),
         ChangeNotifierProvider.value(
-            value: CartProvider(),
-        )
+            value: DressFormProvider()
+        ),
       ],
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
           theme: theme(),
-          // We use routeName so that we dont need to remember the name
           initialRoute: SplashScreen.routeName,
           routes: routes,
       ),

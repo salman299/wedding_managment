@@ -7,7 +7,8 @@ import 'package:wedding_management/size_config.dart';
 class PackageItemTile extends StatelessWidget {
   final CartPackageItem cartItem;
   final String route;
-  const PackageItemTile({Key? key, required this.route, required this.cartItem}) : super(key: key);
+  final VoidCallback onDelete;
+  const PackageItemTile({Key? key, required this.route, required this.cartItem, required this.onDelete}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +43,7 @@ class PackageItemTile extends StatelessWidget {
           Expanded(
               flex: 5,
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -65,7 +66,7 @@ class PackageItemTile extends StatelessWidget {
                           ],
                         ),
                         Text(
-                          '${cartItem.price / 1000}K',
+                          cartItem.price !=null ? '${cartItem.price! / 1000}K' : 'NA',
                           style: const TextStyle(fontSize: 18),
                         ),
                       ],
@@ -81,7 +82,7 @@ class PackageItemTile extends StatelessWidget {
                             runSpacing: 5,
                             children: [
                               Text(
-                                '${cartItem.percentage*100}% Complete',
+                                '${(cartItem.percentage*100).toInt()}% Complete',
                                 style: const TextStyle(
                                     fontSize: 14, color: kTextLightColor),
                               ),
@@ -123,7 +124,7 @@ class PackageItemTile extends StatelessWidget {
                                 Icons.delete_outline,
                                 color: Colors.black,
                               ),
-                              onPressed: () {},
+                              onPressed: onDelete,
                             ),
                           ),
                         ),

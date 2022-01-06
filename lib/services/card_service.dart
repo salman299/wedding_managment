@@ -1,9 +1,7 @@
-import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wedding_management/models/cart_item.dart';
 import '../models/invitation_card.dart';
-
+import 'utils.dart';
 
 class InvitationCardService {
 
@@ -21,15 +19,44 @@ class InvitationCardService {
     return InvitationCard.fromMap(response.data()!, id);
   }
 
+  static Future<CartPackageItem?> getCartItemFromLocalData() async {
+    final cardData = await getFormDataFromLocalData();
+    if (cardData.isNotEmpty){
+      final cart= CartPackageItem(
+        id: "invitation_card",
+        title: cardData['cardTitle'],
+        subtitle: '',
+        price: cardData['invitations'] !='' ? double.parse(cardData['price'])*double.parse(cardData['invitations']): null,
+        percentage: double.parse(cardData['percentage']),
+        image: cardData['image'],
+        data: cardData,
+      );
+      return cart;
+    }
+  }
+  static CartPackageItem getCartItemFromData(cardData){
+    final percentage = checkPercentage(cardData);
+    return CartPackageItem(
+      id: "invitation_card",
+      title: cardData['cardTitle'],
+      subtitle: '',
+      price: cardData['invitations'] !='' ? double.parse(cardData['price'])*double.parse(cardData['invitations']): null,
+      percentage: double.parse(percentage),
+      image: cardData['image'],
+      data: cardData,
+    );
+  }
+
   static void setFormToLocalStorage(Map<String, dynamic> data) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('invitation_card_data', json.encode(data));
+    setMapDataToLocalStorage('invitation_card_data', data);
   }
 
   static Future<Map<String, dynamic>> getFormDataFromLocalData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    final String? localData = prefs.getString('invitation_card_data');
-    return localData != null ? json.decode(localData) as Map<String, dynamic>: {};
+    return await getMapDataFromLocalStorage('invitation_card_data');
+  }
+
+  static Future<void> deleteLocalData() async {
+    await removeLocalData('invitation_card_data');
   }
 
 }

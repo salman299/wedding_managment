@@ -5,7 +5,7 @@ import 'constants.dart';
 ThemeData theme() {
   return ThemeData(
     scaffoldBackgroundColor: const Color(0xFFF8F8FA),
-    fontFamily: "Muli",
+    fontFamily: 'Segoe_UI',
     appBarTheme: appBarTheme(),
     textTheme: textTheme(),
     primaryColor: kPrimaryColor,
@@ -41,7 +41,6 @@ TextTheme textTheme() {
     headline2: TextStyle(color: kTextColor, fontWeight: FontWeight.w600),
     bodyText1: TextStyle(color: kTextColor),
     bodyText2: TextStyle(color: kTextColor),
-    subtitle1: TextStyle(color: kTextLightColor),
   );
 }
 
@@ -49,7 +48,6 @@ AppBarTheme appBarTheme() {
   return const AppBarTheme(
     color: Colors.white,
     elevation: 0,
-    brightness: Brightness.light,
     iconTheme: IconThemeData(color: Colors.black),
   );
 }

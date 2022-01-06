@@ -17,7 +17,7 @@ class SelectBanquetPackages extends StatelessWidget {
       future: Provider.of<BanquetFormProvider>(context, listen: false).getBanquetPackages(banquetId),
       builder: (BuildContext context, AsyncSnapshot<List<BanquetPackage>> snapshot){
         if (snapshot.hasError) {
-          return const Text('something went wrong');
+          return const Center(child: CircularProgressIndicator());
         }
         if (snapshot.connectionState == ConnectionState.waiting){
           return const Center(child: CircularProgressIndicator());

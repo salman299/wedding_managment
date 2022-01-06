@@ -47,6 +47,7 @@ class BanquetFormFields extends StatelessWidget {
               DateTimeField(
                 format: format,
                 controller: date,
+                decoration: const InputDecoration(label: Text("Date"), hintText: "Date"),
                 onShowPicker: (context, currentValue) async {
                   final date = await showDatePicker(
                       context: context,
@@ -69,7 +70,7 @@ class BanquetFormFields extends StatelessWidget {
               TextFormField(
                 controller: contactNo,
                 decoration:
-                const InputDecoration(label: Text("Contact No"), hintText: "Email"),
+                const InputDecoration(label: Text("Contact No"), hintText: "Contact No"),
                 validator: (value){
                   if (value!.isEmpty) {
                     return "Contact number is required";

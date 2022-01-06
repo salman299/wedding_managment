@@ -22,6 +22,7 @@ class _BodyState extends State<Body> {
   TextEditingController country = TextEditingController(text: '');
   TextEditingController city = TextEditingController(text: '');
 
+  bool isLoading = false;
   bool isLogin = true;
 
   void changeStatus() {
@@ -34,26 +35,30 @@ class _BodyState extends State<Body> {
     showDialog(context: context,builder: (ctx) =>AlertDialog(title: Text(upperMessage),
       content: Text(message),
       actions: <Widget>[
-        FlatButton(
-          color: Theme.of(context).primaryColor.withOpacity(0.50),
-          child: Text("okay"),
+        TextButton(
+          child: const Text("Okay"),
           onPressed: ()=> Navigator.of(context).pop(),
         )
       ],)
     );
   }
 
-  void onLogin(context) async {
+  void onButtonPress(context) async {
     if (_formKey.currentState!.validate()){
-      bool isSuccess = false;
+      setState(() {
+        isLoading = true;
+      });
       try{
         if (isLogin){
           await Provider.of<Auth>(context, listen: false).signIn(email.text, password.text);
         } else {
           await Provider.of<Auth>(context, listen: false).signUp(email.text, password.text);
         }
-        Navigator.of(context).pushNamed(Home.routeName);
+        Navigator.of(context).pushReplacementNamed(Home.routeName);
       } catch (error){
+        setState(() {
+          isLoading = false;
+        });
         showErrorDialog(error.toString());
       }
       
@@ -62,45 +67,57 @@ class _BodyState extends State<Body> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          CustomContainer(
-            height: isLogin ? 500 : 260,
-          ),
-          LoginForm(
-              isLogin: isLogin,
-              formKey: _formKey,
-              email: email,
-              password: password,
-              confirmPassword: confirmPassword,
-              country: country,
-              city: city,
-          ),
-          Column(
+    return Stack(
+      children: [
+        SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Container(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: getProportionateScreenWidth(30)),
-                  child: GradientButton(
-                      buttonText: isLogin ? "Login" : "Signup",
-                      onPressed: () => onLogin(context))),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(isLogin
-                      ? "Don't have an account?"
-                      : "Already have an account?"),
-                  TextButton(
-                      onPressed: changeStatus,
-                      child: Text(isLogin ? "Sign Up" : "Login"))
-                ],
+              CustomContainer(
+                height: isLogin ? 500 : 260,
               ),
+              LoginForm(
+                isLogin: isLogin,
+                formKey: _formKey,
+                email: email,
+                password: password,
+                confirmPassword: confirmPassword,
+                country: country,
+                city: city,
+              ),
+              Column(
+                children: [
+                  Container(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: getProportionateScreenWidth(30)),
+                      child: GradientButton(
+                          buttonText: isLogin ? "Login" : "Signup",
+                          onPressed: () => onButtonPress(context))),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(isLogin
+                          ? "Don't have an account?"
+                          : "Already have an account?"),
+                      TextButton(
+                          onPressed: changeStatus,
+                          child: Text(isLogin ? "Sign Up" : "Login"))
+                    ],
+                  ),
+                ],
+              )
             ],
-          )
-        ],
-      ),
+          ),
+        ),
+        if(isLoading)
+        Container(
+          alignment: Alignment.center,
+          width: double.infinity,
+          height: double.infinity,
+          color: Colors.black.withOpacity(0.5),
+          child: const CircularProgressIndicator(),
+        )
+      ],
     );
   }
 }

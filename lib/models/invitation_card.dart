@@ -4,6 +4,7 @@ class InvitationCard {
   final int packs;
   final double rate;
   final String coverImage;
+  final String description;
   final List<String> images;
   final List<String> details;
 
@@ -14,13 +15,14 @@ class InvitationCard {
       required this.rate,
       required this.coverImage,
       required this.images,
+        required this.description,
         required this.details});
 
   factory InvitationCard.fromMap(Map<String, dynamic> data, String documentId) {
-    print(data);
     return InvitationCard(
       id: documentId,
       title: data['title'],
+      description: data['description'],
       packs: data['packs'],
       rate: data['rate'].toDouble(),
       coverImage: data['coverImage'],

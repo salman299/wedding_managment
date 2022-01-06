@@ -6,6 +6,7 @@ class InvitationCardFormFields extends StatelessWidget {
   final formKey;
   final TextEditingController groomName,
       brideName,
+      invitations,
       contactNo,
       address,
       email,
@@ -15,6 +16,7 @@ class InvitationCardFormFields extends StatelessWidget {
     required this.formKey,
     required this.groomName,
     required this.brideName,
+    required this.invitations,
     required this.contactNo,
     required this.address,
     required this.email,
@@ -33,7 +35,7 @@ class InvitationCardFormFields extends StatelessWidget {
               TextFormField(
                 controller: groomName,
                 decoration:
-                    const InputDecoration(label: Text("Groom Name"), hintText: "Email"),
+                    const InputDecoration(label: Text("Groom Name"), hintText: "Groom Name"),
                 validator: (value){
                   if (value!.isEmpty) {
                     return "Groom Name is required";
@@ -43,7 +45,7 @@ class InvitationCardFormFields extends StatelessWidget {
               TextFormField(
                 controller: brideName,
                 decoration:
-                    const InputDecoration(label: Text("Bride Name"), hintText: "Email"),
+                    const InputDecoration(label: Text("Bride Name"), hintText: "Bridal Name"),
                 validator: (value){
                   if (value!.isEmpty) {
                     return "Bridal name is required";
@@ -51,9 +53,20 @@ class InvitationCardFormFields extends StatelessWidget {
                 },
               ),
               TextFormField(
+                controller: invitations,
+                keyboardType: TextInputType.number,
+                decoration:
+                const InputDecoration(label: Text("Invitations"), hintText: "Invitations"),
+                validator: (value){
+                  if (value!.isEmpty) {
+                    return "Please enter number of guest";
+                  }
+                },
+              ),
+              TextFormField(
                 controller: contactNo,
                 decoration:
-                    const InputDecoration(label: Text("Contact No"), hintText: "Email"),
+                    const InputDecoration(label: Text("Contact No"), hintText: "Contact Number"),
                 validator: (value){
                   if (value!.isEmpty) {
                     return "Contact number is required";
@@ -63,7 +76,7 @@ class InvitationCardFormFields extends StatelessWidget {
               TextFormField(
                 controller: address,
                 decoration:
-                    const InputDecoration(label: Text("Address"), hintText: "Email"),
+                    const InputDecoration(label: Text("Address"), hintText: "Address"),
                 validator: (value){
                   if (value!.length < 10) {
                     return "Invalid Address";
@@ -83,7 +96,7 @@ class InvitationCardFormFields extends StatelessWidget {
               TextFormField(
                 controller: otherDetails,
                 decoration:
-                    const InputDecoration(label: Text("Other Details"), hintText: "Email"),
+                    const InputDecoration(label: Text("Other Details"), hintText: "Other Details"),
               ),
             ],
           ),

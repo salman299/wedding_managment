@@ -4,15 +4,16 @@ import 'package:wedding_management/constants.dart';
 class SettingTile extends StatelessWidget {
   final String title;
   final IconData iconData;
-  const SettingTile({Key? key, required this.title, required this.iconData})
+  final VoidCallback onClick;
+  const SettingTile({Key? key, required this.title, required this.iconData, required this.onClick})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      onTap: () {},
+      onTap: onClick,
       leading: Container(
-          padding: EdgeInsets.all(7),
+          padding: const EdgeInsets.all(7),
           decoration: BoxDecoration(
             color: kPrimaryColor.withOpacity(0.30),
             borderRadius: BorderRadius.circular(5),

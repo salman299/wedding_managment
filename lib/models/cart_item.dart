@@ -22,7 +22,7 @@ class CartPackageItem {
   final String id;
   final String title;
   final String subtitle;
-  final double price;
+  final double? price;
   final double percentage;
   final String image;
   final Map<String, dynamic> data;

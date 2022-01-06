@@ -16,27 +16,30 @@ class TitleTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                title,
-                style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600
+                  ),
                 ),
-              ),
-              Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 5),
-                  child: Text(subtitle, style: const TextStyle(fontSize: 16, color: kTextLightColor))
-              )
-            ]),
-      ],
+                Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 5),
+                    child: Text(subtitle, style: const TextStyle(fontSize: 16, color: kTextLightColor))
+                )
+              ]),
+        ],
+      ),
     );
   }
 }

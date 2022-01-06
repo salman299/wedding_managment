@@ -9,7 +9,8 @@ import 'package:wedding_management/size_config.dart';
 
 class CartItemTile extends StatefulWidget {
   final  CartItem cartItem;
-  const CartItemTile({Key? key, required this.cartItem}) : super(key: key);
+  final VoidCallback onDelete;
+  const CartItemTile({Key? key, required this.cartItem, required this.onDelete}) : super(key: key);
 
   @override
   State<CartItemTile> createState() => _CartItemTileState();
@@ -94,7 +95,7 @@ class _CartItemTileState extends State<CartItemTile> {
                           ),
                           child: IconButton(
                             color: kPrimaryColor,
-                              icon : Icon(Icons.delete_outline, color: Colors.black,), onPressed: (){  },
+                              icon : Icon(Icons.delete_outline, color: Colors.black,), onPressed: widget.onDelete,
                           ),
                         ),
                       ],
