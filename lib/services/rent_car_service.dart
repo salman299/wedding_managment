@@ -26,7 +26,7 @@ class RentCarService {
         id: "car",
         title: cardData['title'],
         subtitle: '${cardData['date']} - ${cardData['days']} days',
-        price: double.parse(cardData['price'])*double.parse(cardData['days']),
+        price: cardData['days'] != '' ? double.parse(cardData['price'])*double.parse(cardData['days']): null,
         percentage: double.parse(cardData['percentage']),
         image: cardData['image'],
         data: cardData,
@@ -41,5 +41,7 @@ class RentCarService {
   static Future<Map<String, dynamic>> getFormDataFromLocalData() async {
     return await getMapDataFromLocalStorage('car_data');
   }
-
+  static Future<void> deleteLocalData() async {
+    await removeLocalData('car_data');
+  }
 }

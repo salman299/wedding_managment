@@ -13,13 +13,32 @@ class PhotographerFormProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<List<Photographer>> getPhotographers() async{
-    if(photographers.isEmpty){
+  Future<void> setPhotographerDataFromDetail(
+      {required String id,
+      required String title,
+      required String image,
+      required String price}) async {
+    final photographerData =
+        await PhotographerService.getFormDataFromLocalData();
+    final data = {
+      'photographerId': id,
+      'noOfPhotographers': photographerData['noOfPhotographers'] ?? '',
+      'hours': photographerData['hours'] ?? '',
+      'contactNo': photographerData['contactNo'] ?? '',
+      'otherDetails': photographerData['otherDetails'] ?? '',
+      'title': title,
+      'image': image,
+      'price': price,
+    };
+    PhotographerService.setFormToLocalStorage(data);
+  }
+
+  Future<List<Photographer>> getPhotographers() async {
+    if (photographers.isEmpty) {
       final data = await PhotographerService.getPhotographers();
       photographers = data;
       notifyListeners();
     }
     return photographers;
   }
-
 }

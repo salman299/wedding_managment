@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-void  snackBar(text, String? label, VoidCallback? onPressed) => SnackBar(
+SnackBar snackBar({text, String? label, VoidCallback? onPressed}) => SnackBar(
   content: Text(text),
   action: label != null ? SnackBarAction(
     label: label,

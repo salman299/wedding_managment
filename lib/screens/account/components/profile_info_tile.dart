@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:wedding_management/constants.dart';
-import 'package:wedding_management/size_config.dart';
 
 class ProfileInfoTile extends StatelessWidget {
   final String email;

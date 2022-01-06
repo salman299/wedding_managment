@@ -21,13 +21,12 @@ class PhotographerService {
 
   static Future<CartPackageItem?> getCartItemFromLocalData() async {
     final cardData = await getFormDataFromLocalData();
-    print(cardData);
     if (cardData.isNotEmpty){
       return CartPackageItem(
         id: "photographer",
         title: cardData['title'],
         subtitle: '',
-        price: double.parse(cardData['price'])*double.parse(cardData['hours'])*double.parse(cardData['noOfPhotographers']),
+        price: cardData['hours'] != '' ? double.parse(cardData['price'])*double.parse(cardData['hours'])*double.parse(cardData['noOfPhotographers']) : null,
         percentage: double.parse(cardData['percentage']),
         image: cardData['image'],
         data: cardData,
@@ -42,5 +41,7 @@ class PhotographerService {
   static Future<Map<String, dynamic>> getFormDataFromLocalData() async {
     return await getMapDataFromLocalStorage('photographer_data');
   }
-
+  static Future<void> deleteLocalData() async {
+    await removeLocalData('photographer_data');
+  }
 }

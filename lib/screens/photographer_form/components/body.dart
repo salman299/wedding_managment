@@ -60,6 +60,9 @@ class _BodyState extends State<Body> {
     hours.text= data['hours'] ?? '';
     contactNo.text = data['contactNo'] ?? '';
     otherDetails.text = data['otherDetails'] ?? '';
+    title.text = data['title'] ?? '';
+    image.text = data['image'] ?? '';
+    price.text = data['price'] ?? '';
     Provider.of<PhotographerFormProvider>(context, listen: false)
         .setPhotographerId(photographerId.text);
   }

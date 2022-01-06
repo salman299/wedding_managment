@@ -70,7 +70,7 @@ class BanquetFormFields extends StatelessWidget {
               TextFormField(
                 controller: contactNo,
                 decoration:
-                const InputDecoration(label: Text("Contact No"), hintText: "Email"),
+                const InputDecoration(label: Text("Contact No"), hintText: "Contact No"),
                 validator: (value){
                   if (value!.isEmpty) {
                     return "Contact number is required";

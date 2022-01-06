@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:wedding_management/components/gradient_button.dart';
 import 'package:wedding_management/components/image_header.dart';
+import 'package:wedding_management/components/snakbar.dart';
 import 'package:wedding_management/constants.dart';
 import 'package:wedding_management/models/rent_car.dart';
+import 'package:wedding_management/providers/rent_car_form_provider.dart';
 import 'package:wedding_management/screens/dress_datail/components/product_tile.dart';
 import 'package:wedding_management/services/rent_car_service.dart';
 import 'package:wedding_management/size_config.dart';
@@ -10,6 +13,17 @@ import 'package:wedding_management/size_config.dart';
 class Body extends StatelessWidget {
   final String carId;
   const Body({Key? key, required this.carId}) : super(key: key);
+
+  void onAddToCard(context, data) {
+    Provider.of<RentCarFormProvider>(context, listen: false)
+        .setRentCarDataFromDetail(
+        id: data.id!,
+        title: data.title,
+        image: data.coverImage,
+        price: data.rate.toString()
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar(text: 'Rent Car is added to Cart'));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +63,7 @@ class Body extends StatelessWidget {
                       const SizedBox(width: 40,),
                       Expanded(
                         flex: 1,
-                          child: GradientButton(buttonText: 'ADD TO CART', onPressed: ()=>{})
+                          child: GradientButton(buttonText: 'ADD TO CART', onPressed: ()=> onAddToCard(context, snapshot.data!))
                       ),
                     ],
                   ),

@@ -7,7 +7,8 @@ class Auth with ChangeNotifier {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   String? get userId {
-    return _udi;
+    print("I am here ${_udi}");
+    return _udi ?? 'Y6L1idrbwsPGvpYJTESMNBH6II73';
   }
 
   Future<void> signIn(String email, String password) async {

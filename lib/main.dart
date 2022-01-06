@@ -31,10 +31,10 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider.value(
-          value: AppSettings(),
+          value: Auth(),
         ),
         ChangeNotifierProvider.value(
-          value: Auth(),
+          value: AppSettings(),
         ),
         ChangeNotifierProvider.value(
           value: RentCarFormProvider(),
@@ -59,7 +59,6 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
           theme: theme(),
-          // We use routeName so that we dont need to remember the name
           initialRoute: SplashScreen.routeName,
           routes: routes,
       ),

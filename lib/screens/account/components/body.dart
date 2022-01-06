@@ -18,7 +18,7 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isUser = Provider.of<Auth>(context, listen: false).userId;
+    final String? isUser = Provider.of<Auth>(context, listen: false).userId;
     return isUser==null ?  const WelcomeUser() :  ListView(
       padding: EdgeInsets.zero,
       children: [

@@ -66,6 +66,9 @@ class _BodyState extends State<Body> {
     city.text= data['city'] ?? '';
     contactNo.text= data['contactNo'] ?? '';
     otherDetails.text = data['otherDetails'] ?? '';
+    title.text = data['title'] ?? '';
+    image.text = data['image'] ?? '';
+    price.text = data['price'] ?? '';
     Provider.of<RentCarFormProvider>(context, listen: false)
         .setRentCarId(rentCarId.text);
   }

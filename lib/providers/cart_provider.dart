@@ -1,8 +1,18 @@
 import 'package:flutter/foundation.dart';
+import 'package:wedding_management/models/order_item.dart';
+import 'package:wedding_management/services/banquet_service.dart';
+import 'package:wedding_management/services/card_service.dart';
+import 'package:wedding_management/services/photographer_service.dart';
+import 'package:wedding_management/services/rent_car_service.dart';
 import '../models/cart_item.dart';
 
 class CartProvider with ChangeNotifier {
   Map<String, CartItem> _items = {};
+  // BanquetOrderItem? banquet;
+  // InvitationCardOrderItem? invitationCard;
+  // PhotographerOrderItem? photographer;
+  // RentCarOrderItem? rentCar;
+
 
   Map<String, CartItem> get items {
     return {..._items};
@@ -11,6 +21,27 @@ class CartProvider with ChangeNotifier {
   int get itemCount {
     return _items.length;
   }
+
+  // void initializePackageDataFromLocalStorage() async {
+  //   final banquetData = await BanquetService.getFormDataFromLocalData();
+  //   final invitationCardData = await InvitationCardService.getFormDataFromLocalData();
+  //   final photographerData =await PhotographerService.getFormDataFromLocalData();
+  //   final rentCarData =await RentCarService.getFormDataFromLocalData();
+  //
+  //   if (banquetData.isNotEmpty){
+  //     banquet = BanquetOrderItem.fromMap(banquetData, 'banquet');
+  //   }
+  //   if (invitationCardData.isNotEmpty){
+  //     invitationCard = InvitationCardOrderItem.fromMap(invitationCardData, 'invitationCard');
+  //   }
+  //   if (photographerData.isNotEmpty){
+  //     photographer = PhotographerOrderItem.fromMap(photographerData, 'photographer');
+  //   }
+  //   if (rentCarData.isNotEmpty){
+  //     rentCar = RentCarOrderItem.fromMap(rentCarData, 'rentCar');
+  //   }
+  //   notifyListeners();
+  // }
 
   int itemQuantity(String productId, String color, String size){
     productId = changeId(productId, color, size);

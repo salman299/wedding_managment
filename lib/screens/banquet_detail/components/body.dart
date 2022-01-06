@@ -30,7 +30,7 @@ class Body extends StatelessWidget {
                     SizedBox(height: getProportionateScreenHeight(10),),
                     const Text('Packages', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),),
                     SizedBox(height: getProportionateScreenHeight(10),),
-                    Expanded(child: BanquetPackages(banquetId: banquetId,))
+                    Expanded(child: BanquetPackages(banquetId: banquetId, banquetName: snapshot.data!.name, image: snapshot.data!.coverImage,))
                   ],
                 ): const Text('no Data'),
     );

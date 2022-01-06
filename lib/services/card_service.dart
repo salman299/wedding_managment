@@ -21,16 +21,19 @@ class InvitationCardService {
 
   static Future<CartPackageItem?> getCartItemFromLocalData() async {
     final cardData = await getFormDataFromLocalData();
+    print("HELLP");
+    print(cardData);
     if (cardData.isNotEmpty){
-      return CartPackageItem(
+      final cart= CartPackageItem(
         id: "invitation_card",
         title: cardData['cardTitle'],
         subtitle: '',
-        price: double.parse(cardData['price'])*double.parse(cardData['invitations']),
+        price: cardData['invitations'] !='' ? double.parse(cardData['price'])*double.parse(cardData['invitations']): null,
         percentage: double.parse(cardData['percentage']),
         image: cardData['image'],
         data: cardData,
       );
+      return cart;
     }
   }
 
@@ -40,6 +43,10 @@ class InvitationCardService {
 
   static Future<Map<String, dynamic>> getFormDataFromLocalData() async {
     return await getMapDataFromLocalStorage('invitation_card_data');
+  }
+
+  static Future<void> deleteLocalData() async {
+    await removeLocalData('invitation_card_data');
   }
 
 }

@@ -65,7 +65,7 @@ class PackageItemTile extends StatelessWidget {
                           ],
                         ),
                         Text(
-                          '${cartItem.price / 1000}K',
+                          cartItem.price !=null ? '${cartItem.price! / 1000}K' : 'NA',
                           style: const TextStyle(fontSize: 18),
                         ),
                       ],
@@ -81,7 +81,7 @@ class PackageItemTile extends StatelessWidget {
                             runSpacing: 5,
                             children: [
                               Text(
-                                '${cartItem.percentage.toInt()*100}% Complete',
+                                '${(cartItem.percentage*100).toInt()}% Complete',
                                 style: const TextStyle(
                                     fontSize: 14, color: kTextLightColor),
                               ),

@@ -75,6 +75,9 @@ class _BodyState extends State<Body> {
     address.text = data['address'] ?? '';
     email.text = data['email'] ?? '';
     otherDetails.text = data['otherDetails'] ?? '';
+    image.text = data['image'] ?? '';
+    price.text = data['price'] ?? '';
+    cardTitle.text = data['cardTitle'] ?? '';
     Provider.of<InvitationCardFormProvider>(context, listen: false)
         .setInvitationCardId(invitationCardId.text);
   }

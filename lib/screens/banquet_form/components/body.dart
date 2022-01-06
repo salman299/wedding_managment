@@ -74,7 +74,6 @@ class _BodyState extends State<Body> {
     packageName.text = data['packageName'] ?? '';
     image.text = data['image'] ?? '';
     price.text = data['price'] ?? '';
-    print("Hello ${invitations.text}");
     Provider.of<BanquetFormProvider>(context, listen: false)
         .setBanquetData(banquetId.text, packageId.text);
   }

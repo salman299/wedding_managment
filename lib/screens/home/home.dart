@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:wedding_management/providers/auth_provider.dart';
 import 'package:wedding_management/providers/settings.dart';
 import 'package:wedding_management/screens/account/account.dart';
 import 'package:wedding_management/screens/cart/cart.dart';

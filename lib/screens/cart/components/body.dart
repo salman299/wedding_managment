@@ -92,16 +92,20 @@ class Body extends StatelessWidget {
               children: [
                 if (snapshot.data!.banquet != null)
                   PackageItemTile(cartItem: snapshot.data!.banquet!, route: BanquetForm.routeName),
-                const Divider(color: kTextLightColor,),
+                if (snapshot.data!.banquet != null)
+                  const Divider(color: kTextLightColor,),
                 if (snapshot.data!.invitationCard != null)
                   PackageItemTile(cartItem: snapshot.data!.invitationCard!, route: InvitationCardForm.routeName),
-                const Divider(color: kTextLightColor,),
+                if (snapshot.data!.invitationCard != null)
+                  const Divider(color: kTextLightColor,),
                 if (snapshot.data!.photographer != null)
                   PackageItemTile(cartItem: snapshot.data!.photographer!, route: PhotographerForm.routeName),
-                const Divider(color: kTextLightColor,),
+                if (snapshot.data!.photographer != null)
+                  const Divider(color: kTextLightColor,),
                 if (snapshot.data!.rentCar != null)
                   PackageItemTile(cartItem: snapshot.data!.rentCar!, route: RentCarForm.routeName),
-                const Divider(color: kTextLightColor,),
+                if (snapshot.data!.rentCar != null)
+                  const Divider(color: kTextLightColor,),
                 ...snapshot.data!.products.entries.map((e) => Column(
                   children: [
                     CartItemTile(cartItem: e.value, ),

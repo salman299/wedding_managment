@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:wedding_management/models/banquet.dart';
-import 'package:wedding_management/models/invitation_card.dart';
 import 'package:wedding_management/services/banquet_service.dart';
 
 class BanquetFormProvider with ChangeNotifier {
@@ -25,8 +24,31 @@ class BanquetFormProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<List<Banquet>> getBanquets() async{
-    if(banquets.isEmpty){
+  Future<void> setBanquetDataFromDetail(
+      {required String id,
+      required String packageId,
+      required String banquetName,
+      required String packageName,
+      required String image,
+      required String price}) async {
+    Map<String, dynamic> banquetData = await getFormDataFromLocalData();
+    final data = {
+      'banquetId': id,
+      'packageId': packageId,
+      'invitations': banquetData['invitations'] ?? '',
+      'date': banquetData['date'] ?? '',
+      'contactNo': banquetData['contactNo'] ?? '',
+      'otherDetails': banquetData['otherDetails'] ?? '',
+      'banquetName': banquetName,
+      'packageName': packageName,
+      'image': image,
+      'price': price,
+    };
+    BanquetService.setFormToLocalStorage(data);
+  }
+
+  Future<List<Banquet>> getBanquets() async {
+    if (banquets.isEmpty) {
       final data = await BanquetService.getBanquets();
       banquets = data;
       notifyListeners();
@@ -34,13 +56,12 @@ class BanquetFormProvider with ChangeNotifier {
     return banquets;
   }
 
-  Future<List<BanquetPackage>> getBanquetPackages(id) async{
-    final index  = banquets.indexWhere((element) => element.id==id);
-    if(banquets[index].banquetPackages.isEmpty){
+  Future<List<BanquetPackage>> getBanquetPackages(id) async {
+    final index = banquets.indexWhere((element) => element.id == id);
+    if (banquets[index].banquetPackages.isEmpty) {
       final data = await BanquetService.getBanquetPackages(id);
       banquets[index].banquetPackages = data;
       notifyListeners();
-
     }
     return banquets[index].banquetPackages;
   }
@@ -48,5 +69,4 @@ class BanquetFormProvider with ChangeNotifier {
   Future<Map<String, dynamic>> getFormDataFromLocalData() async {
     return BanquetService.getFormDataFromLocalData();
   }
-
 }

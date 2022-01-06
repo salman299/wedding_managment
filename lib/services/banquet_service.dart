@@ -38,7 +38,7 @@ class BanquetService {
           id: "banquet",
           title: banquetData['banquetName'],
           subtitle: banquetData['packageName'],
-          price: double.parse(banquetData['price'])*double.parse(banquetData['invitations']),
+          price: banquetData['invitations'] != '' ? double.parse(banquetData['price'])*double.parse(banquetData['invitations']): null,
           percentage: double.parse(banquetData['percentage']),
           image: banquetData['image'],
           data: banquetData,
@@ -54,10 +54,7 @@ class BanquetService {
     return await getMapDataFromLocalStorage('banquet_data');
   }
 
-  static void setBanquetDataOnly(Map<String, dynamic> data) async {
-    setMapDataToLocalStorage('banquet_data', data);
+  static Future<void> deleteLocalData() async {
+    await removeLocalData('banquet_data');
   }
-
-
-
 }
