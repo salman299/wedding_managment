@@ -11,15 +11,26 @@ class OrderItemCard extends StatefulWidget {
 
 class _OrderItemCardState extends State<OrderItemCard> {
   bool isExpended = false;
+  double productTotal = 0;
+  double packageTotal = 0;
+  double total = 0;
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    productTotal = widget.item.getTotalProduct();
+    packageTotal = widget.item.getTotalPackage();
+    total = productTotal + packageTotal;
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Card(
           child: ListTile(
-            title: Text('30,000 RS', style: TextStyle(fontWeight: FontWeight.w600),),
-            subtitle: Text('12/11/2021'),
+            title: Text(total.toString(), style: TextStyle(fontWeight: FontWeight.w600),),
+            subtitle: Text(widget.item.date!),
             trailing: IconButton(
               icon: isExpended ? Icon(Icons.expand_less) : Icon(Icons.expand_more),
               onPressed: (){
@@ -40,7 +51,7 @@ class _OrderItemCardState extends State<OrderItemCard> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children:[
                     const Text('Packages', style: TextStyle(fontWeight: FontWeight.w600),),
-                    Text('${widget.item.getTotalPackage()}', style: TextStyle(fontWeight: FontWeight.w600),),
+                    Text(packageTotal.toString(), style: TextStyle(fontWeight: FontWeight.w600),),
                   ],
                 ),
                 if (widget.item.banquet != null)
@@ -78,9 +89,9 @@ class _OrderItemCardState extends State<OrderItemCard> {
                 SizedBox(height: 10,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Text('Products', style: TextStyle(fontWeight: FontWeight.w600),),
-                    Text('1000', style: TextStyle(fontWeight: FontWeight.w600),),
+                  children: [
+                    const Text('Products', style: TextStyle(fontWeight: FontWeight.w600),),
+                    Text(productTotal.toString(), style: TextStyle(fontWeight: FontWeight.w600),),
                   ],
                 ),
                 ...widget.item.products.map((e) =>

@@ -26,7 +26,7 @@ class BanquetOrderItem {
   factory BanquetOrderItem.fromMap(
       Map<String, dynamic> data, String documentId) {
     return BanquetOrderItem(
-      title: data['title'],
+      title: data['title'] ?? data['banquetName'],
       banquetId: data['banquetId'],
       contactNo: data['contactNo'],
       date: data['date'],
@@ -112,7 +112,7 @@ class InvitationCardOrderItem {
   factory InvitationCardOrderItem.fromMap(
       Map<String, dynamic> data, String documentId) {
     return InvitationCardOrderItem(
-      title: data['title'],
+      title: data['title'] ?? data['cardTitle'],
       invitationCardID: data['invitationCardId'],
       contactNo: data['contactNo'],
       email: data['email'],
@@ -165,9 +165,8 @@ class PhotographerOrderItem {
 
   factory PhotographerOrderItem.fromMap(
       Map<String, dynamic> data, String documentId) {
-    print(data);
     return PhotographerOrderItem(
-      title: data['title'],
+      title: data['title'] ?? data[''],
       photographerId: data['photographerId'],
       contactNo: data['contactNo'],
       noOfPhotographers: data['noOfPhotographers'],
@@ -268,7 +267,7 @@ class OrderItem {
 
   double getTotalPackage(){
     double sum=0;
-    if (packageTotal != null){
+    if (packageTotal == null){
       sum += banquet != null ? banquet!.calculatedPrice! : 0;
       sum += invitationCard != null ? invitationCard!.calculatedPrice!  : 0;
       sum += photographer != null ?  photographer!.calculatedPrice! : 0;
@@ -280,10 +279,13 @@ class OrderItem {
 
   double getTotalProduct(){
     double sum=0;
-    if (productTotal!= null){
-      products.map((e) => sum+=e.price);
+    if (productTotal == null){
+      products.map((e) => sum+=e.price*e.quantity);
     }
     productTotal= sum;
     return sum;
+  }
+  double getTotal(){
+    return getTotalPackage() + getTotalProduct();
   }
 }

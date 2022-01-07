@@ -264,6 +264,7 @@ class CartProvider with ChangeNotifier {
   }
 
   bool isPackageValid(){
+    setAvgValue();
     return (avgPackage*100).toInt()==100;
   }
 }

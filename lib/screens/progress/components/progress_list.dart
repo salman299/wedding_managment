@@ -22,7 +22,7 @@ class ProgressList extends StatelessWidget {
   ProgressList({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final percentage = Provider.of<CartProvider>(context, listen: false).getPercentage();
+    final percentage = Provider.of<CartProvider>(context).getPercentage();
     final List<Progress> categories = [
       Progress(name: 'Banquet', percentage: percentage['banquet'] ?? 0, route: BanquetForm.routeName),
       Progress(name: 'Card', percentage: percentage['invitation_card'] ?? 0, route: InvitationCardForm.routeName),
