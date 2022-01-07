@@ -13,10 +13,24 @@ import 'package:wedding_management/screens/dress_datail/components/product_tile.
 import 'package:wedding_management/services/card_service.dart';
 import 'package:wedding_management/services/photographer_service.dart';
 import 'package:wedding_management/size_config.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Body extends StatelessWidget {
   final String photographerId;
   const Body({Key? key, required this.photographerId}) : super(key: key);
+
+  void _launchSocial(String url, String fallbackUrl) async {
+    // Don't use canLaunch because of fbProtocolUrl (fb://)
+    try {
+      bool launched =
+      await launch(url, forceSafariVC: false, forceWebView: false);
+      if (!launched) {
+        await launch(fallbackUrl, forceSafariVC: false, forceWebView: false);
+      }
+    } catch (e) {
+      await launch(fallbackUrl, forceSafariVC: false, forceWebView: false);
+    }
+  }
 
   void onAddToCard(context, data) {
     Provider.of<CartProvider>(context, listen: false)
@@ -86,7 +100,7 @@ class Body extends StatelessWidget {
                                 Expanded(
                                     child: CustomOutlineButton(
                                   buttonText: 'GO TO FACEBOOK',
-                                  onPressed: () => {},
+                                  onPressed: () => _launchSocial('fb://profile/408834569303957',snapshot.data!.facebookLink),
                                 )),
                                 const SizedBox(
                                   width: 40,

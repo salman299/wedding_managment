@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wedding_management/components/gradient_button.dart';
 import 'package:wedding_management/components/image_header.dart';
+import 'package:wedding_management/components/snakbar.dart';
 import 'package:wedding_management/constants.dart';
 import 'package:wedding_management/models/dress.dart';
 import 'package:wedding_management/providers/cart_provider.dart';
@@ -35,6 +36,7 @@ class Body extends StatelessWidget {
 
   void onAddToCart(context, productId, price, title, image){
     Provider.of<CartProvider>(context, listen: false).addItem(productId, price, title, image, color, size, quantity);
+    ScaffoldMessenger.of(context).showSnackBar(snackBar(text: 'Dress is added to cart'));
   }
 
   @override
