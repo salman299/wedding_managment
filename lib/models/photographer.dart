@@ -4,6 +4,7 @@ class Photographer {
   final double rate;
   final String coverImage;
   final String description;
+  final String facebookLink;
   final List<String> images;
   final List<String> details;
 
@@ -13,12 +14,14 @@ class Photographer {
       required this.rate,
       required this.coverImage,
       required this.images,
+        required this.facebookLink,
         required this.description,
         required this.details});
 
   factory Photographer.fromMap(Map<String, dynamic> data, String documentId) {
     return Photographer(
       id: documentId,
+      facebookLink: data['facebookLink'],
       title: data['title'],
       rate: data['rate'].toDouble(),
       description: data['description'],
