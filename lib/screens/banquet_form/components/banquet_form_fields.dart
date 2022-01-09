@@ -38,8 +38,8 @@ class BanquetFormFields extends StatelessWidget {
                     validator: (value){
                     if (value!.isEmpty ) {
                         return "Quantity is required";
-                    } else if ( int.parse(value) > 400){
-                       return "Minimum space is 400";
+                    } else if ( int.parse(value) < 100){
+                       return "Minimum space is 100";
                     }
                 },
               ),

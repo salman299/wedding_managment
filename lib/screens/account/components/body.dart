@@ -19,10 +19,15 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final String? isUser = Provider.of<Auth>(context, listen: false).userId;
+    final String? email = Provider.of<Auth>(context, listen: false).email;
+    String? username;
+    if (email != null ){
+      username = email.split('@')[0];
+    }
     return isUser==null ?  const WelcomeUser() :  ListView(
       padding: EdgeInsets.zero,
       children: [
-        const ProfileInfoTile(email: 'salman.khuwaja29@gmail.com', username: 'Ali Salman', image: 'assets/profile.jpeg'),
+        ProfileInfoTile(email: email!, username: username!, image: 'assets/profile.png'),
         SettingTile(title: 'Orders', iconData: Icons.edit, onClick: ()=>Navigator.of(context).pushNamed(OrderScreen.routeName),),
         SettingTile(title: 'Logout', iconData: Icons.edit, onClick: ()=>onLogout(context),),
       ],
