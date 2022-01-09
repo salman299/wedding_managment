@@ -64,7 +64,7 @@ class DressFormFields extends StatelessWidget {
               TextFormField(
                 controller: otherDetails,
                 decoration:
-                    const InputDecoration(label: Text("Other Details"), hintText: "Email"),
+                    const InputDecoration(label: Text("Other Details"), hintText: "Other Details"),
               ),
             ],
           ),

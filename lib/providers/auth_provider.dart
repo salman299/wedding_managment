@@ -4,10 +4,14 @@ import 'dart:async';
 
 class Auth with ChangeNotifier {
   String? _udi;
+  String? _email;
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   String? get userId {
     return _udi;
+  }
+  String? get email {
+    return _email;
   }
 
   Future<void> signIn(String email, String password) async {
@@ -15,6 +19,7 @@ class Auth with ChangeNotifier {
           email: email, password: password);
       final user = result.user!;
       _udi = user.uid;
+      _email = user.email;
       notifyListeners();
   }
 
@@ -23,6 +28,7 @@ class Auth with ChangeNotifier {
           email: email, password: password);
       final user = result.user!;
       _udi = user.uid;
+      _email = user.email;
       notifyListeners();
   }
 
@@ -32,12 +38,14 @@ class Auth with ChangeNotifier {
         return null;
       }
       _udi = user.uid;
+      _email = user.email;
       return _udi;
   }
 
   Future<void> signOut() async {
       await _firebaseAuth.signOut();
       _udi = null;
+      _email = null;
       notifyListeners();
   }
 

@@ -31,7 +31,7 @@ class ProfileInfoTile extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(username,style: TextStyle(fontSize: 22,),),
+                Text(username.toUpperCase(),style: TextStyle(fontSize: 22,),),
                 SizedBox(height: 10,),
                 Text(email, style: TextStyle(fontSize: 12),),
               ],
